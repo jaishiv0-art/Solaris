@@ -55,11 +55,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               target.src = siteConfig.media.logo;
             }}
             alt="Solaris Rooftop Solar Landscape"
-            className="w-full h-full object-cover object-center opacity-80 filter brightness-90 contrast-[1.1]"
+            className="w-full h-full object-cover object-center opacity-95 filter brightness-105 contrast-[1.05]"
           />
-          {/* Translucent dark gradient wash ensuring text is 100% legible while photo is clearly visible */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 to-slate-900/60" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/40" />
+          {/* Lighter translucent gradient wash letting the background image shine through vividly */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/75 via-slate-950/50 to-slate-900/25" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-slate-950/20" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -90,14 +90,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 </div>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.12] drop-shadow-md">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.12] drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
                 Turn Your Rooftop into a{' '}
-                <span className="bg-gradient-to-r from-amber-400 via-amber-300 to-emerald-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-amber-400 via-amber-300 to-emerald-400 bg-clip-text text-transparent drop-shadow-md">
                   Clean Energy Asset
                 </span>
               </h1>
 
-              <p className="text-base sm:text-lg text-slate-200 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal drop-shadow-sm">
+              <p className="text-base sm:text-lg text-slate-100 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
                 Draw custom roof boundaries with satellite GIS imagery, simulate high-density solar PV arrays, detect tree shade obstructions, and calculate direct government subsidies in seconds.
               </p>
 
