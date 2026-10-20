@@ -48,9 +48,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         {/* Cinematic Solar & Urban Landscape Background Image */}
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <img
-            src="/hero-bg.jpg"
+            src="/solar_background.avif"
+            onError={(e) => {
+              const target = e.currentTarget;
+              target.src = '/hero-bg.png';
+            }}
             alt="Solaris Rooftop Solar Landscape"
-            className="w-full h-full object-cover object-center filter saturate-[1.1] scale-105"
+            className="w-full h-full object-cover object-center filter saturate-[1.05] scale-105"
           />
           {/* Soft multi-stop gradient overlay for crisp typography and card contrast */}
           <div className="absolute inset-0 bg-gradient-to-r from-slate-50/95 via-white/85 to-white/70 backdrop-blur-[2px]" />
