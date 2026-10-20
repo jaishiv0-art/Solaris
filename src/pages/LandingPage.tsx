@@ -227,8 +227,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               Three Simple Steps
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-              How Solaris Works
-            </h2>
+              How Solaris Works </h2>
             <p className="text-sm text-slate-600">
               Transforming satellite imagery into actionable solar architecture and urban greenery intelligence.
             </p>

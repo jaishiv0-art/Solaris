@@ -37,6 +37,9 @@ export const siteConfig = {
     // Hero Section Background Image:
     // Change this to your desired image path in the "public" folder
     heroBackground: '/solar_background.avif',
+
+    // Interactive Estimator Card Background Image:
+    cardBackground: '/solarsetting.avif',
   },
 
   // --------------------------------------------------------------------------
