@@ -139,20 +139,35 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               </div>
             </div>
 
-            {/* Right Interactive Hero Estimator Card */}
+            {/* Right Interactive Hero Estimator Card with solarsetting.avif background */}
             <div className="lg:col-span-5">
-              <div className="bg-white/90 backdrop-blur-xl p-6 sm:p-8 rounded-4xl border border-slate-200/80 shadow-float relative">
-                <div className="absolute -top-3.5 right-6 bg-gradient-to-r from-amber-500 to-emerald-600 text-white text-[11px] font-black uppercase tracking-wider px-3.5 py-1 rounded-full shadow-md">
+              <div className="relative rounded-3xl overflow-hidden border border-amber-500/30 shadow-2xl p-6 sm:p-8 isolate">
+                {/* Solar Setting AVIF Background Image */}
+                <img
+                  src={siteConfig.media.cardBackground || '/solarsetting.avif'}
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    target.src = siteConfig.media.heroBackground;
+                  }}
+                  alt="Solar ROI Simulator Background"
+                  className="absolute inset-0 w-full h-full object-cover object-center -z-10 brightness-[0.70] contrast-[1.15]"
+                />
+                {/* Frosted Glass Dark Wash Overlay for realistic aesthetics and high visibility */}
+                <div className="absolute inset-0 bg-slate-950/70 backdrop-blur-md -z-10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/50 to-slate-950/30 -z-10" />
+
+                <div className="absolute -top-3.5 right-6 bg-gradient-to-r from-amber-500 to-emerald-500 text-white text-[11px] font-black uppercase tracking-wider px-3.5 py-1 rounded-full shadow-lg border border-amber-300/40">
                   Live ROI Simulator
                 </div>
 
                 <div className="space-y-6">
                   <div>
                     <div className="flex justify-between items-center mb-2">
-                      <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+                      <label className="text-xs font-bold text-slate-200 uppercase tracking-wider flex items-center gap-1.5">
+                        <Sun className="w-3.5 h-3.5 text-amber-400" />
                         Estimate Your Rooftop Area
                       </label>
-                      <span className="text-sm font-extrabold text-amber-600 font-mono">
+                      <span className="text-sm font-extrabold text-amber-300 font-mono drop-shadow-sm">
                         {demoRoofArea} m² ({Math.round(demoRoofArea * 10.7639)} sq ft)
                       </span>
                     </div>
@@ -163,52 +178,62 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                       step={10}
                       value={demoRoofArea}
                       onChange={(e) => setDemoRoofArea(Number(e.target.value))}
-                      className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-amber-500"
+                      className="w-full h-2.5 bg-slate-800/90 rounded-lg appearance-none cursor-pointer accent-amber-400 border border-slate-700/60"
                     />
-                    <div className="flex justify-between text-[10px] text-slate-400 mt-1">
+                    <div className="flex justify-between text-[10px] text-slate-300/90 font-medium mt-1.5">
                       <span>30 m² (Townhouse)</span>
                       <span>300 m² (Villa)</span>
                       <span>600 m² (Commercial)</span>
                     </div>
                   </div>
 
-                  {/* Calculated metrics */}
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="p-3.5 bg-amber-50/70 border border-amber-200/60 rounded-2xl">
-                      <span className="text-[11px] font-semibold text-amber-800 block">Annual Solar Yield</span>
-                      <div className="text-xl font-black text-amber-950 font-mono mt-0.5">
+                  {/* Calculated metrics: Dual Glow HUD Cards */}
+                  <div className="grid grid-cols-2 gap-3.5">
+                    <div className="p-4 bg-slate-900/80 backdrop-blur-md border border-amber-500/40 rounded-2xl shadow-lg shadow-amber-950/20 group hover:border-amber-400 transition-colors">
+                      <span className="text-[11px] font-bold text-amber-300 block flex items-center gap-1.5">
+                        <Sun className="w-3.5 h-3.5 text-amber-400" />
+                        Annual Solar Yield
+                      </span>
+                      <div className="text-2xl font-black text-white font-mono mt-1 drop-shadow-md">
                         {annualKWh.toLocaleString()}
                       </div>
-                      <span className="text-[10px] text-amber-700">kWh / year clean power</span>
+                      <span className="text-[10px] text-amber-200/80 font-medium">kWh / year clean power</span>
                     </div>
 
-                    <div className="p-3.5 bg-emerald-50/70 border border-emerald-200/60 rounded-2xl">
-                      <span className="text-[11px] font-semibold text-emerald-800 block">Estimated Savings</span>
-                      <div className="text-xl font-black text-emerald-950 font-mono mt-0.5">
+                    <div className="p-4 bg-slate-900/80 backdrop-blur-md border border-emerald-500/40 rounded-2xl shadow-lg shadow-emerald-950/20 group hover:border-emerald-400 transition-colors">
+                      <span className="text-[11px] font-bold text-emerald-300 block flex items-center gap-1.5">
+                        <Zap className="w-3.5 h-3.5 text-emerald-400" />
+                        Estimated Savings
+                      </span>
+                      <div className="text-2xl font-black text-emerald-400 font-mono mt-1 drop-shadow-md">
                         ₹{annualSavingsINR.toLocaleString()}
                       </div>
-                      <span className="text-[10px] text-emerald-700">/ year off grid bills</span>
+                      <span className="text-[10px] text-emerald-200/80 font-medium">/ year off grid bills</span>
                     </div>
                   </div>
 
                   {/* Panel Fit Spec */}
-                  <div className="p-4 bg-slate-50 border border-slate-200/80 rounded-2xl flex items-center justify-between text-xs">
+                  <div className="p-4 bg-slate-900/85 backdrop-blur-md border border-slate-700/80 rounded-2xl flex items-center justify-between text-xs shadow-md">
                     <div>
-                      <span className="text-slate-400 text-[11px] block">Rooftop Panel Capacity</span>
-                      <strong className="text-sm text-slate-900 font-mono">{panelCount} Solar Panels ({systemKWp} kWp)</strong>
+                      <span className="text-slate-300 text-[11px] block font-medium">Rooftop Panel Capacity</span>
+                      <strong className="text-sm text-white font-mono flex items-center gap-1.5 mt-0.5">
+                        <span className="text-amber-400 font-bold">{panelCount}</span> Solar Panels ({systemKWp} kWp)
+                      </strong>
                     </div>
                     <div className="text-right">
-                      <span className="text-slate-400 text-[11px] block">PM Surya Ghar Grant</span>
-                      <span className="text-xs font-bold text-emerald-700">Up to ₹78,000</span>
+                      <span className="text-slate-300 text-[11px] block font-medium">PM Surya Ghar Grant</span>
+                      <span className="text-xs font-black text-emerald-300 bg-emerald-950/90 px-2.5 py-1 rounded-full border border-emerald-500/40 inline-block mt-0.5 shadow-sm">
+                        Up to ₹78,000
+                      </span>
                     </div>
                   </div>
 
                   <button
                     onClick={onLaunchApp}
-                    className="w-full py-3 px-4 rounded-xl text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white transition-all flex items-center justify-center gap-2 group"
+                    className="w-full py-3.5 px-4 rounded-xl text-xs font-black bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-slate-950 shadow-xl shadow-amber-500/30 transition-all hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2 group tracking-wide"
                   >
                     <span>Analyze Your Specific Roof on Map</span>
-                    <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <ChevronRight className="w-4 h-4 text-slate-950 group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>
               </div>
