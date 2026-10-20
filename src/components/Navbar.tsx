@@ -1,6 +1,7 @@
 import React from 'react';
 import { Sun, Leaf, User, BookmarkCheck, Sparkles, LogOut, ShieldCheck } from 'lucide-react';
 import { UserProfile, AppMode } from '../types';
+import { siteConfig } from '../config/siteConfig';
 
 interface NavbarProps {
   currentView: 'landing' | 'app';
@@ -35,8 +36,8 @@ export const Navbar: React.FC<NavbarProps> = ({
           className="flex items-center gap-3 cursor-pointer group select-none"
         >
           <img
-            src="/solaris-logo.jpg"
-            alt="Solaris Logo"
+            src={siteConfig.media.logo}
+            alt={`${siteConfig.branding.name} Logo`}
             className="w-10 h-10 object-contain rounded-xl shadow-sm border border-slate-200/80 bg-white group-hover:scale-105 transition-transform"
           />
           <div>
@@ -45,11 +46,11 @@ export const Navbar: React.FC<NavbarProps> = ({
                 S<span className="text-amber-500">O</span>LARIS
               </span>
               <span className="text-[10px] font-semibold uppercase tracking-wider bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded-full">
-                GeoCanopy
+                {siteConfig.branding.subtitle}
               </span>
             </div>
             <p className="text-[10px] text-slate-500 hidden sm:block -mt-0.5 font-medium">
-              Connecting Rural & Urban • Solar & Green Estimator
+              {siteConfig.branding.tagline} • Solar & Green Estimator
             </p>
           </div>
         </div>

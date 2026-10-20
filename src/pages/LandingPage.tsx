@@ -18,6 +18,7 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import { UserProfile } from '../types';
+import { siteConfig } from '../config/siteConfig';
 
 interface LandingPageProps {
   onLaunchApp: () => void;
@@ -34,31 +35,31 @@ export const LandingPage: React.FC<LandingPageProps> = ({
   const [demoRoofArea, setDemoRoofArea] = useState(120); // in m²
 
   // Quick live calculations
-  const usableArea = Math.round(demoRoofArea * 0.72);
-  const panelCount = Math.floor(usableArea / 2.0);
-  const systemKWp = (panelCount * 0.4).toFixed(1);
+  const usableArea = Math.round(demoRoofArea * siteConfig.solar.usableRoofRatio);
+  const panelCount = Math.floor(usableArea / siteConfig.solar.panelAreaSqMeters);
+  const systemKWp = (panelCount * siteConfig.solar.panelCapacityKW).toFixed(1);
   const annualKWh = Math.round(parseFloat(systemKWp) * 1450);
-  const annualSavingsINR = Math.round(annualKWh * 8.2);
+  const annualSavingsINR = Math.round(annualKWh * siteConfig.financials.defaultTariffINR);
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-50 selection:bg-amber-100 selection:text-amber-900">
       
       {/* Hero Section */}
       <section className="relative pt-12 pb-20 lg:pt-20 lg:pb-28 overflow-hidden">
-        {/* Cinematic Solar & Urban Landscape Background Image */}
+        {/* Cinematic Solar & Urban Landscape Background Image - High Visibility */}
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <img
-            src="/solar_background.avif"
+            src={siteConfig.media.heroBackground}
             onError={(e) => {
               const target = e.currentTarget;
-              target.src = '/hero-bg.png';
+              target.src = siteConfig.media.logo;
             }}
             alt="Solaris Rooftop Solar Landscape"
-            className="w-full h-full object-cover object-center filter saturate-[1.05] scale-105"
+            className="w-full h-full object-cover object-center brightness-90 contrast-[1.05]"
           />
-          {/* Soft multi-stop gradient overlay for crisp typography and card contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-50/95 via-white/85 to-white/70 backdrop-blur-[2px]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-slate-50" />
+          {/* Subtle translucent dark wash that keeps the background image 100% visible while making text pop */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-900/70 to-slate-900/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/40" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -67,36 +68,36 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             {/* Left Headline & CTAs */}
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
-                <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-2xl bg-white border border-slate-200/90 shadow-sm">
+                <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-2xl bg-slate-900/80 backdrop-blur-md border border-slate-700/80 shadow-md">
                   <img
-                    src="/solaris-logo.jpg"
-                    alt="Solaris"
-                    className="w-7 h-7 object-contain rounded-lg"
+                    src={siteConfig.media.logo}
+                    alt={siteConfig.branding.name}
+                    className="w-7 h-7 object-contain rounded-lg bg-white"
                   />
-                  <span className="text-xs font-black tracking-wider text-slate-900 font-mono">
-                    SOLARIS
+                  <span className="text-xs font-black tracking-wider text-white font-mono">
+                    {siteConfig.branding.name}
                   </span>
-                  <span className="text-[10px] text-amber-600 font-bold hidden sm:inline">
-                    Connecting Rural & Urban
+                  <span className="text-[10px] text-amber-400 font-bold hidden sm:inline">
+                    {siteConfig.branding.tagline}
                   </span>
                 </div>
 
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100/80 border border-amber-200 text-amber-900 text-xs font-bold tracking-wide shadow-xs">
-                  <Sun className="w-3.5 h-3.5 text-amber-600" />
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/20 backdrop-blur-md border border-amber-400/40 text-amber-200 text-xs font-bold tracking-wide shadow-xs">
+                  <Sun className="w-3.5 h-3.5 text-amber-400" />
                   <span>Google Sunroof Engine</span>
-                  <span className="w-1 h-1 rounded-full bg-amber-500" />
-                  <span className="text-emerald-700">PM Surya Ghar</span>
+                  <span className="w-1 h-1 rounded-full bg-amber-400" />
+                  <span className="text-emerald-400">PM Surya Ghar</span>
                 </div>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.12]">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.12] drop-shadow-md">
                 Turn Your Rooftop into a{' '}
-                <span className="bg-gradient-to-r from-amber-500 via-amber-600 to-emerald-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-amber-400 via-amber-300 to-emerald-400 bg-clip-text text-transparent">
                   Clean Energy Asset
                 </span>
               </h1>
 
-              <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
+              <p className="text-base sm:text-lg text-slate-200 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal drop-shadow-sm">
                 Draw custom roof boundaries with satellite GIS imagery, simulate high-density solar PV arrays, detect tree shade obstructions, and calculate direct government subsidies in seconds.
               </p>
 
@@ -114,7 +115,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 {!currentUser && (
                   <button
                     onClick={onOpenAuth}
-                    className="w-full sm:w-auto px-6 py-4 rounded-2xl text-sm font-bold bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/90 shadow-soft transition-all hover:shadow-md flex items-center justify-center gap-2"
+                    className="w-full sm:w-auto px-6 py-4 rounded-2xl text-sm font-bold bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/20 shadow-soft transition-all hover:shadow-md flex items-center justify-center gap-2"
                   >
                     <span>Sign In to Save Rooftops</span>
                   </button>
@@ -122,17 +123,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               </div>
 
               {/* Trust Indicators */}
-              <div className="pt-6 border-t border-slate-200/80 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-slate-500 font-medium">
+              <div className="pt-6 border-t border-slate-700/60 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-slate-300 font-medium">
                 <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
                   <span>100% Free & Open Satellite Data</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-amber-600" />
+                  <ShieldCheck className="w-4 h-4 text-amber-400" />
                   <span>BIS & MNRE Empaneled Partners</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Leaf className="w-4 h-4 text-emerald-600" />
+                  <Leaf className="w-4 h-4 text-emerald-400" />
                   <span>Urban Green Canopy NDVI</span>
                 </div>
               </div>

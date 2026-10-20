@@ -1,6 +1,7 @@
 import React from 'react';
 import { X, Printer, Download, Sun, Leaf, ShieldCheck, Zap, FileText } from 'lucide-react';
 import { AnalysisCalculation, GeoPoint, UserProfile } from '../types';
+import { siteConfig } from '../config/siteConfig';
 import jsPDF from 'jspdf';
 
 interface ReportModalProps {
@@ -38,12 +39,12 @@ export const ReportModal: React.FC<ReportModalProps> = ({
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(20);
     doc.setTextColor(255, 255, 255);
-    doc.text('GeoCanopy Rooftop Solar & Greenery Audit', 14, 18);
+    doc.text(`${siteConfig.branding.name} Rooftop Solar & Greenery Audit`, 14, 18);
 
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(9);
     doc.setTextColor(203, 213, 225);
-    doc.text(`Generated on ${new Date().toLocaleDateString()} | Author: Jaishiv Tiwari | User: ${currentUser?.fullName || 'Guest Explorer'}`, 14, 26);
+    doc.text(`Generated on ${new Date().toLocaleDateString()} | Author: ${siteConfig.developer.name} | User: ${currentUser?.fullName || 'Guest Explorer'}`, 14, 26);
 
     // Section 1: Executive Summary
     doc.setFont('helvetica', 'bold');
@@ -116,7 +117,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-md animate-fadeIn">
-      <div 
+      <div
         className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] shadow-2xl border border-slate-100 flex flex-col overflow-hidden relative"
         onClick={(e) => e.stopPropagation()}
       >
@@ -155,15 +156,15 @@ export const ReportModal: React.FC<ReportModalProps> = ({
             <div className="flex justify-between items-start border-b border-slate-200 pb-4">
               <div className="flex items-center gap-3">
                 <img
-                  src="/solaris-logo.jpg"
-                  alt="Solaris"
+                  src={siteConfig.media.logo}
+                  alt={`${siteConfig.branding.name} Logo`}
                   className="w-12 h-12 object-contain rounded-xl border border-slate-200 bg-white"
                 />
                 <div>
                   <h4 className="text-xl font-black text-slate-900 font-mono">
-                    SOLARIS <span className="text-amber-600 font-sans text-base font-bold">Rooftop Assessment</span>
+                    {siteConfig.branding.name} <span className="text-amber-600 font-sans text-base font-bold">Rooftop Assessment</span>
                   </h4>
-                  <p className="text-xs text-slate-500">Autonomous Satellite Solar & Canopy Feasibility Engine • Connecting Rural & Urban</p>
+                  <p className="text-xs text-slate-500">Autonomous Satellite Solar & Canopy Feasibility Engine • {siteConfig.branding.tagline}</p>
                 </div>
               </div>
               <div className="text-right text-xs text-slate-500">
@@ -212,7 +213,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({
             <div className="pt-4 border-t border-slate-200 flex items-center justify-between text-[11px] text-slate-500">
               <div>
                 <span className="font-bold text-slate-700">Project Architect:</span> Jaishiv Tiwari
-                <div>jaishivtiwari@gmail.com • +91 98765 43210</div>
+                <div>jaishivtiwari@gmail.com </div>
               </div>
               <div className="text-right">
                 <span className="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-full font-bold">

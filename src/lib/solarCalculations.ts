@@ -1,4 +1,5 @@
 import { AnalysisCalculation, GeoPoint } from '../types';
+import { siteConfig } from '../config/siteConfig';
 
 /**
  * Computes exact geodesic planar area in square meters using WGS84 ellipsoid projections.
@@ -34,7 +35,7 @@ export function calculatePolygonArea(coords: GeoPoint[]): number {
  * Calculates center of a polygon
  */
 export function getPolygonCenter(coords: GeoPoint[]): GeoPoint {
-  if (!coords || coords.length === 0) return { lat: 28.6139, lng: 77.2090 };
+  if (!coords || coords.length === 0) return siteConfig.map.defaultCenter;
   const sumLat = coords.reduce((acc, c) => acc + c.lat, 0);
   const sumLng = coords.reduce((acc, c) => acc + c.lng, 0);
   return {
@@ -48,13 +49,15 @@ export function getPolygonCenter(coords: GeoPoint[]): GeoPoint {
  * - 1 kWp = ₹30,000
  * - 2 kWp = ₹60,000
  * - ≥ 3 kWp = ₹78,000 (Capped)
+ * Configurable via src/config/siteConfig.ts
  */
 export function calculatePMSuryaGharSubsidy(kwp: number): number {
+  const { subsidy1KWp, subsidy2KWp, subsidy3KWpPlus } = siteConfig.financials.pmSuryaGhar;
   if (kwp <= 0) return 0;
-  if (kwp < 1) return Math.round(kwp * 30000);
-  if (kwp < 2) return 30000 + Math.round((kwp - 1) * 30000);
-  if (kwp < 3) return 60000 + Math.round((kwp - 2) * 18000);
-  return 78000;
+  if (kwp < 1) return Math.round(kwp * subsidy1KWp);
+  if (kwp < 2) return subsidy1KWp + Math.round((kwp - 1) * (subsidy2KWp - subsidy1KWp));
+  if (kwp < 3) return subsidy2KWp + Math.round((kwp - 2) * (subsidy3KWpPlus - subsidy2KWp));
+  return subsidy3KWpPlus;
 }
 
 /**
@@ -92,16 +95,16 @@ export function computeRooftopAnalytics(
   const areaSqMeters = calculatePolygonArea(coords);
   const areaSqFt = Math.round(areaSqMeters * 10.7639);
 
-  // Usable area discount (72% default: 28% reserved for parapets, walkways, vents, tanks)
-  const usableRoofRatio = 0.72;
+  // Usable area discount (configurable in src/config/siteConfig.ts)
+  const usableRoofRatio = siteConfig.solar.usableRoofRatio;
   const usableAreaSqMeters = Math.round(areaSqMeters * usableRoofRatio * 10) / 10;
 
-  // Standard Tier-1 400W Monocrystalline PERC panel takes approx 2.0 m² (1.95m x 1.0m)
-  const panelArea = 2.0;
+  // Standard Tier-1 panel specs from siteConfig
+  const panelArea = siteConfig.solar.panelAreaSqMeters;
   const panelCount = Math.floor(usableAreaSqMeters / panelArea);
 
-  // Standard 400W = 0.40 kW per panel
-  const systemCapacityKWp = Math.round(panelCount * 0.4 * 10) / 10;
+  // Panel capacity in kW from siteConfig
+  const systemCapacityKWp = Math.round(panelCount * siteConfig.solar.panelCapacityKW * 10) / 10;
 
   // Real solar irradiance estimation derived from real latitude
   const center = getPolygonCenter(coords);
@@ -110,7 +113,7 @@ export function computeRooftopAnalytics(
   // Peak Sun Hours (PSH):
   // Tropical/Subtropical India (8-30°): 4.8 - 5.5 PSH average
   // Higher latitudes (Europe, North America): 3.8 - 4.5 PSH
-  let peakSunHours = 5.0;
+  let peakSunHours: number = siteConfig.solar.defaultPeakSunHours;
   if (lat > 40) {
     peakSunHours = 3.9;
   } else if (lat > 30) {
@@ -121,8 +124,8 @@ export function computeRooftopAnalytics(
     peakSunHours = 5.3;
   }
 
-  // Performance Ratio (PR): standard inverter + wiring + thermal derating = ~0.78
-  const performanceRatio = 0.78;
+  // Performance Ratio (PR): standard inverter + wiring + thermal derating
+  const performanceRatio = siteConfig.solar.performanceRatio;
   const annualSolarGenerationKWh = Math.round(
     systemCapacityKWp * peakSunHours * 365 * performanceRatio
   );
@@ -131,15 +134,17 @@ export function computeRooftopAnalytics(
   const isIndia = center.lat > 8 && center.lat < 37 && center.lng > 68 && center.lng < 98;
   const currency: 'INR' | 'USD' = isIndia ? 'INR' : 'USD';
   const currencySymbol = isIndia ? '₹' : '$';
-  const defaultTariff = isIndia ? 8.2 : 0.18;
+  const defaultTariff = isIndia
+    ? siteConfig.financials.defaultTariffINR
+    : siteConfig.financials.defaultTariffUSD;
   const tariff = customTariffPerKWh || defaultTariff;
   const estimatedAnnualSavings = Math.round(annualSolarGenerationKWh * tariff);
 
   // Environmental Impact:
-  // 0.82 kg CO2 per kWh grid displacement
+  // CO2 per kWh grid displacement and tree equivalent from siteConfig
   const co2OffsetTonsPerYear =
-    Math.round(((annualSolarGenerationKWh * 0.82) / 1000) * 10) / 10;
-  const treesEquivalent = Math.round(co2OffsetTonsPerYear * 45);
+    Math.round(((annualSolarGenerationKWh * siteConfig.solar.co2PerKWhKg) / 1000) * 10) / 10;
+  const treesEquivalent = Math.round(co2OffsetTonsPerYear * siteConfig.solar.treesPerTonCO2);
 
   // Greenery & NDVI calculation
   // Base vegetation index derived from geography

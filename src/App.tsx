@@ -5,7 +5,6 @@ import { LandingPage } from './pages/LandingPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { AuthModal } from './components/AuthModal';
 import { SavedAnalysesDrawer } from './components/SavedAnalysesDrawer';
-import { SupabaseConnectModal } from './components/SupabaseConnectModal';
 import { AppMode, SavedAnalysis, UserProfile } from './types';
 import { getCurrentUser, logoutUser, fetchUserAnalyses, deleteSavedAnalysis } from './lib/supabaseClient';
 
@@ -15,7 +14,6 @@ export function App() {
   const [currentUser, setCurrentUser] = useState<UserProfile | null>(null);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isSavedDrawerOpen, setIsSavedDrawerOpen] = useState(false);
-  const [isSupabaseModalOpen, setIsSupabaseModalOpen] = useState(false);
   const [savedAnalyses, setSavedAnalyses] = useState<SavedAnalysis[]>([]);
 
   // Initialize session and saved records
@@ -91,13 +89,6 @@ export function App() {
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
         onSuccess={handleAuthSuccess}
-      />
-
-      {/* Supabase Connection & SQL Setup Modal */}
-      <SupabaseConnectModal
-        isOpen={isSupabaseModalOpen}
-        onClose={() => setIsSupabaseModalOpen(false)}
-        onConnectionChange={refreshSessionAndData}
       />
 
       {/* Saved Analyses Slide-over Drawer (accessible from landing page too) */}

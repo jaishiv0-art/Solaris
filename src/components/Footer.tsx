@@ -1,5 +1,6 @@
 import React from 'react';
 import { Sun, Leaf, Mail, Phone, User, Globe, Heart, ShieldCheck, ExternalLink } from 'lucide-react';
+import { siteConfig } from '../config/siteConfig';
 
 export const Footer: React.FC = () => {
   return (
@@ -11,8 +12,8 @@ export const Footer: React.FC = () => {
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
               <img
-                src="/solaris-logo.jpg"
-                alt="Solaris Logo"
+                src={siteConfig.media.logo}
+                alt={`${siteConfig.branding.name} Logo`}
                 className="w-11 h-11 object-contain rounded-xl shadow-md border border-slate-700 bg-white"
               />
               <div>
@@ -20,13 +21,13 @@ export const Footer: React.FC = () => {
                   S<span className="text-amber-400">O</span>LARIS
                 </span>
                 <p className="text-[10px] text-amber-400 font-semibold tracking-wide">
-                  — Connecting Rural & Urban —
+                  — {siteConfig.branding.tagline} —
                 </p>
               </div>
             </div>
             
             <p className="text-sm text-slate-400 max-w-md leading-relaxed">
-              Empowering homeowners, commercial building managers, and urban planners to unlock clean rooftop solar energy and quantify urban greenery canopy with precision satellite intelligence.
+              {siteConfig.branding.description}
             </p>
 
             <div className="flex items-center gap-3 text-xs text-slate-400 pt-2">
@@ -72,29 +73,29 @@ export const Footer: React.FC = () => {
             
             <div className="space-y-2 text-sm text-slate-300">
               <div className="flex items-center gap-2">
-                <span className="font-semibold text-white">Jaishiv Tiwari</span>
+                <span className="font-semibold text-white">{siteConfig.developer.name}</span>
                 <span className="text-[10px] bg-emerald-900/60 text-emerald-300 px-1.5 py-0.5 rounded border border-emerald-700/40 font-mono">
-                  Lead Full-Stack Architect
+                  {siteConfig.developer.role}
                 </span>
               </div>
 
               <div className="flex items-center gap-2 text-xs text-slate-400 hover:text-white transition-colors">
                 <Mail className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                <a href="mailto:jaishivtiwari@gmail.com" className="hover:underline truncate">
-                  jaishivtiwari@gmail.com
+                <a href={`mailto:${siteConfig.developer.email}`} className="hover:underline truncate">
+                  {siteConfig.developer.email}
                 </a>
               </div>
 
               <div className="flex items-center gap-2 text-xs text-slate-400 hover:text-white transition-colors">
                 <Phone className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                <a href="tel:+919876543210" className="hover:underline">
-                  +91 98765 43210
+                <a href={`tel:${siteConfig.developer.phone.replace(/\s+/g, '')}`} className="hover:underline">
+                  {siteConfig.developer.phone}
                 </a>
               </div>
 
               <div className="flex items-center gap-2 text-xs text-slate-400">
                 <Globe className="w-3.5 h-3.5 text-blue-400 shrink-0" />
-                <span>New Delhi / Remote, Global</span>
+                <span>{siteConfig.developer.location}</span>
               </div>
             </div>
 
@@ -107,7 +108,7 @@ export const Footer: React.FC = () => {
 
         {/* Bottom Bar */}
         <div className="mt-12 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
-          <p>© {new Date().getFullYear()} GeoCanopy. Open Clean Energy Intelligence.</p>
+          <p>© {new Date().getFullYear()} {siteConfig.branding.name} • {siteConfig.branding.subtitle}. Open Clean Energy Intelligence.</p>
           <div className="flex items-center gap-6">
             <span className="hover:text-slate-300 cursor-pointer">Privacy Policy</span>
             <span className="hover:text-slate-300 cursor-pointer">Terms of Service</span>
