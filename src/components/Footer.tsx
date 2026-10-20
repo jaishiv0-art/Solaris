@@ -9,13 +9,20 @@ export const Footer: React.FC = () => {
           
           {/* Brand Info */}
           <div className="md:col-span-2 space-y-4">
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-400 to-emerald-500 flex items-center justify-center text-white shadow-md shadow-amber-500/20">
-                <Sun className="w-5 h-5 text-white" />
+            <div className="flex items-center gap-3">
+              <img
+                src="/solaris-logo.jpg"
+                alt="Solaris Logo"
+                className="w-11 h-11 object-contain rounded-xl shadow-md border border-slate-700 bg-white"
+              />
+              <div>
+                <span className="text-xl font-black tracking-wider text-white font-mono">
+                  S<span className="text-amber-400">O</span>LARIS
+                </span>
+                <p className="text-[10px] text-amber-400 font-semibold tracking-wide">
+                  — Connecting Rural & Urban —
+                </p>
               </div>
-              <span className="text-xl font-bold tracking-tight text-white">
-                Geo<span className="text-emerald-400">Canopy</span>
-              </span>
             </div>
             
             <p className="text-sm text-slate-400 max-w-md leading-relaxed">

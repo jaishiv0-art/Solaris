@@ -54,11 +54,27 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             
             {/* Left Headline & CTAs */}
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100/80 border border-amber-200 text-amber-900 text-xs font-bold tracking-wide shadow-xs">
-                <Sun className="w-4 h-4 text-amber-600 animate-spin-slow" />
-                <span>Inspired by Google Project Sunroof</span>
-                <span className="w-1 h-1 rounded-full bg-amber-500" />
-                <span className="text-emerald-700">PM Surya Ghar Ready</span>
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
+                <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-2xl bg-white border border-slate-200/90 shadow-sm">
+                  <img
+                    src="/solaris-logo.jpg"
+                    alt="Solaris"
+                    className="w-7 h-7 object-contain rounded-lg"
+                  />
+                  <span className="text-xs font-black tracking-wider text-slate-900 font-mono">
+                    SOLARIS
+                  </span>
+                  <span className="text-[10px] text-amber-600 font-bold hidden sm:inline">
+                    Connecting Rural & Urban
+                  </span>
+                </div>
+
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100/80 border border-amber-200 text-amber-900 text-xs font-bold tracking-wide shadow-xs">
+                  <Sun className="w-3.5 h-3.5 text-amber-600" />
+                  <span>Google Sunroof Engine</span>
+                  <span className="w-1 h-1 rounded-full bg-amber-500" />
+                  <span className="text-emerald-700">PM Surya Ghar</span>
+                </div>
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.12]">

@@ -34,22 +34,24 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Brand Logo */}
         <div 
           onClick={() => setCurrentView('landing')}
-          className="flex items-center gap-2.5 cursor-pointer group select-none"
+          className="flex items-center gap-3 cursor-pointer group select-none"
         >
-          <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-400 via-amber-500 to-emerald-500 flex items-center justify-center text-white shadow-md shadow-amber-500/20 group-hover:scale-105 transition-transform">
-            <Sun className="w-5 h-5 text-white animate-spin-slow" />
-          </div>
+          <img
+            src="/solaris-logo.jpg"
+            alt="Solaris Logo"
+            className="w-10 h-10 object-contain rounded-xl shadow-sm border border-slate-200/80 bg-white group-hover:scale-105 transition-transform"
+          />
           <div>
             <div className="flex items-center gap-1.5">
-              <span className="text-xl font-bold tracking-tight text-slate-900 group-hover:text-amber-600 transition-colors">
-                Geo<span className="text-emerald-600">Canopy</span>
+              <span className="text-xl font-black tracking-wider text-slate-900 group-hover:text-amber-600 transition-colors font-mono">
+                S<span className="text-amber-500">O</span>LARIS
               </span>
               <span className="text-[10px] font-semibold uppercase tracking-wider bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded-full">
-                Beta
+                GeoCanopy
               </span>
             </div>
-            <p className="text-[11px] text-slate-500 hidden sm:block -mt-0.5 font-medium">
-              Urban Green & Rooftop Solar Estimator
+            <p className="text-[10px] text-slate-500 hidden sm:block -mt-0.5 font-medium">
+              Connecting Rural & Urban • Solar & Green Estimator
             </p>
           </div>
         </div>

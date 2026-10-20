@@ -153,9 +153,18 @@ export const ReportModal: React.FC<ReportModalProps> = ({
         <div className="flex-1 overflow-y-auto p-6 space-y-6 text-slate-800">
           <div className="border border-slate-200 rounded-2xl p-6 bg-slate-50/50 space-y-5">
             <div className="flex justify-between items-start border-b border-slate-200 pb-4">
-              <div>
-                <h4 className="text-xl font-black text-slate-900">GeoCanopy Rooftop Assessment</h4>
-                <p className="text-xs text-slate-500">Autonomous Satellite Solar & Canopy Feasibility Engine</p>
+              <div className="flex items-center gap-3">
+                <img
+                  src="/solaris-logo.jpg"
+                  alt="Solaris"
+                  className="w-12 h-12 object-contain rounded-xl border border-slate-200 bg-white"
+                />
+                <div>
+                  <h4 className="text-xl font-black text-slate-900 font-mono">
+                    SOLARIS <span className="text-amber-600 font-sans text-base font-bold">Rooftop Assessment</span>
+                  </h4>
+                  <p className="text-xs text-slate-500">Autonomous Satellite Solar & Canopy Feasibility Engine • Connecting Rural & Urban</p>
+                </div>
               </div>
               <div className="text-right text-xs text-slate-500">
                 <span className="font-bold text-slate-800">Date: {new Date().toLocaleDateString()}</span>
