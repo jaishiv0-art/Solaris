@@ -79,7 +79,7 @@ export const MapWorkspace: React.FC<MapWorkspaceProps> = ({
   setActivePresetId,
 }) => {
   const [isDrawing, setIsDrawing] = useState(false);
-  const [mapType, setMapType] = useState<'satellite' | 'streets' | 'hybrid'>('satellite');
+  const [mapType, setMapType] = useState<'google' | 'esri' | 'streets'>('google');
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<GeocodingResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);
@@ -172,7 +172,7 @@ export const MapWorkspace: React.FC<MapWorkspaceProps> = ({
     const lat = parseFloat(result.lat);
     const lng = parseFloat(result.lon);
     setMapCenter({ lat, lng });
-    setMapZoom(19);
+    setMapZoom(18);
     setLocationName(result.display_name.split(',')[0]);
     setShowResultsDropdown(false);
     setSearchQuery('');
@@ -194,7 +194,7 @@ export const MapWorkspace: React.FC<MapWorkspaceProps> = ({
         const lat = pos.coords.latitude;
         const lng = pos.coords.longitude;
         setMapCenter({ lat, lng });
-        setMapZoom(19);
+        setMapZoom(18);
         setLocationName('Your Current GPS Location');
         setIsLocating(false);
         // Start drawing mode
@@ -297,15 +297,25 @@ export const MapWorkspace: React.FC<MapWorkspaceProps> = ({
           {/* Tile Layer Switcher */}
           <div className="flex bg-white/95 backdrop-blur-md p-1 rounded-2xl border border-slate-200/90 shadow-soft">
             <button
-              onClick={() => setMapType('satellite')}
+              onClick={() => setMapType('google')}
               className={`px-3 py-1.5 text-xs font-semibold rounded-xl flex items-center gap-1.5 transition-all ${
-                mapType === 'satellite'
+                mapType === 'google'
                   ? 'bg-slate-900 text-white shadow-sm'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
               <Layers className="w-3.5 h-3.5" />
-              High-Res Satellite
+              <span>Satellite (Hybrid)</span>
+            </button>
+            <button
+              onClick={() => setMapType('esri')}
+              className={`px-3 py-1.5 text-xs font-semibold rounded-xl flex items-center gap-1.5 transition-all ${
+                mapType === 'esri'
+                  ? 'bg-slate-900 text-white shadow-sm'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <span>Esri Aerial</span>
             </button>
             <button
               onClick={() => setMapType('streets')}
@@ -315,7 +325,7 @@ export const MapWorkspace: React.FC<MapWorkspaceProps> = ({
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              Street Map
+              <span>Street Map</span>
             </button>
           </div>
 
@@ -411,22 +421,35 @@ export const MapWorkspace: React.FC<MapWorkspaceProps> = ({
         zoom={mapZoom}
         scrollWheelZoom={true}
         zoomControl={false}
+        maxZoom={22}
         className="w-full h-full flex-1"
       >
         <MapViewUpdater center={mapCenter} zoom={mapZoom} />
 
-        {/* Real High-Resolution Tile Providers */}
-        {mapType === 'satellite' ? (
+        {/* Real High-Resolution Tile Providers with Upscaling Support */}
+        {mapType === 'google' && (
           <TileLayer
-            attribution='&copy; <a href="https://www.esri.com/">Esri</a> &mdash; DigitalGlobe, GeoEye, Earthstar Geographics'
-            url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-            maxZoom={20}
+            attribution='&copy; Google Maps Satellite'
+            url="https://mt{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}"
+            subdomains={['0', '1', '2', '3']}
+            maxNativeZoom={20}
+            maxZoom={22}
           />
-        ) : (
+        )}
+        {mapType === 'esri' && (
+          <TileLayer
+            attribution='&copy; <a href="https://www.esri.com/">Esri</a> &mdash; Earthstar Geographics'
+            url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+            maxNativeZoom={18}
+            maxZoom={22}
+          />
+        )}
+        {mapType === 'streets' && (
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            maxZoom={19}
+            maxNativeZoom={19}
+            maxZoom={22}
           />
         )}
 
