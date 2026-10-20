@@ -45,9 +45,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       
       {/* Hero Section */}
       <section className="relative pt-12 pb-20 lg:pt-20 lg:pb-28 overflow-hidden">
-        {/* Soft Sunroof-style ambient background blooms */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-gradient-to-tr from-amber-300/20 via-amber-400/15 to-emerald-400/15 rounded-full blur-3xl pointer-events-none -z-10" />
-        <div className="absolute top-10 right-10 w-72 h-72 bg-emerald-400/10 rounded-full blur-2xl pointer-events-none -z-10" />
+        {/* Cinematic Solar & Urban Landscape Background Image */}
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <img
+            src="/hero-bg.jpg"
+            alt="Solaris Rooftop Solar Landscape"
+            className="w-full h-full object-cover object-center filter saturate-[1.1] scale-105"
+          />
+          {/* Soft multi-stop gradient overlay for crisp typography and card contrast */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-50/95 via-white/85 to-white/70 backdrop-blur-[2px]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-slate-50" />
+        </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
