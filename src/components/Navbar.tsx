@@ -9,7 +9,6 @@ interface NavbarProps {
   onOpenAuth: () => void;
   onLogout: () => void;
   onOpenSavedDrawer: () => void;
-  onOpenSupabaseModal: () => void;
   savedCount: number;
   appMode?: AppMode;
   setAppMode?: (mode: AppMode) => void;
@@ -22,7 +21,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenAuth,
   onLogout,
   onOpenSavedDrawer,
-  onOpenSupabaseModal,
   savedCount,
   appMode,
   setAppMode,
@@ -102,15 +100,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
           )}
 
-          {/* Supabase Connection Status Button */}
-          <button
-            onClick={onOpenSupabaseModal}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-xl bg-slate-100 hover:bg-slate-200/80 text-slate-700 transition-colors"
-            title="Configure Supabase Cloud"
-          >
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="hidden md:inline">Supabase</span>
-          </button>
 
           {/* Saved Analyses Badge Button */}
           <button

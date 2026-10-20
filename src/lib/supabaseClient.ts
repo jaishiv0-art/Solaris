@@ -137,6 +137,24 @@ export async function getCurrentUser(): Promise<UserProfile | null> {
   return guestUser;
 }
 
+export async function signInWithGoogle(): Promise<{ error: string | null }> {
+  if (isSupabaseConnected() && supabase) {
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: window.location.origin,
+        },
+      });
+      if (error) throw error;
+      return { error: null };
+    } catch (err: any) {
+      return { error: err.message || 'Google OAuth failed' };
+    }
+  }
+  return { error: 'Supabase credentials are not connected yet.' };
+}
+
 export async function loginWithEmail(email: string, password: string): Promise<{ user: UserProfile | null; error: string | null }> {
   if (isSupabaseConnected() && supabase) {
     try {

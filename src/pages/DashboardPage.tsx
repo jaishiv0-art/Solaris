@@ -44,6 +44,9 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
   const [selectedVendorForQuote, setSelectedVendorForQuote] = useState<SolarVendor | null>(null);
   const [isReportModalOpen, setIsReportModalOpen] = useState(false);
 
+  // Site photos state
+  const [sitePhotos, setSitePhotos] = useState<string[]>([]);
+
   // Compute live physics & energy calculation
   const calculation = useMemo(() => {
     return computeRooftopAnalytics(coordinates, appMode);
@@ -92,6 +95,9 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
         onSelectVendor={(vendor) => setSelectedVendorForQuote(vendor)}
         isCollapsed={isSidebarCollapsed}
         setIsCollapsed={setIsSidebarCollapsed}
+        sitePhotos={sitePhotos}
+        onAddSitePhoto={(photo) => setSitePhotos((prev) => [...prev, photo])}
+        onRemoveSitePhoto={(idx) => setSitePhotos((prev) => prev.filter((_, i) => i !== idx))}
       />
 
       {/* AI Solar Layout & Advisory Engine Modal */}

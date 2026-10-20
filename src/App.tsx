@@ -56,7 +56,6 @@ export function App() {
         onOpenAuth={() => setIsAuthModalOpen(true)}
         onLogout={handleLogout}
         onOpenSavedDrawer={() => setIsSavedDrawerOpen(true)}
-        onOpenSupabaseModal={() => setIsSupabaseModalOpen(true)}
         savedCount={savedAnalyses.length}
         appMode={appMode}
         setAppMode={setAppMode}
