@@ -44,10 +44,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
   return (
     <div className="flex flex-col min-h-screen bg-slate-50 selection:bg-amber-100 selection:text-amber-900">
       
-      {/* Hero Section */}
-      <section className="relative pt-12 pb-20 lg:pt-20 lg:pb-28 overflow-hidden">
-        {/* Cinematic Solar & Urban Landscape Background Image - High Visibility */}
-        <div className="absolute inset-0 -z-10 overflow-hidden">
+      {/* Hero Section - Isolated dark canvas with vivid background & crisp high-contrast text */}
+      <section className="relative isolate pt-12 pb-20 lg:pt-20 lg:pb-28 overflow-hidden bg-slate-950 text-white">
+        {/* Cinematic Solar & Urban Landscape Background Image */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <img
             src={siteConfig.media.heroBackground}
             onError={(e) => {
@@ -55,14 +55,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               target.src = siteConfig.media.logo;
             }}
             alt="Solaris Rooftop Solar Landscape"
-            className="w-full h-full object-cover object-center brightness-90 contrast-[1.05]"
+            className="w-full h-full object-cover object-center opacity-80 filter brightness-90 contrast-[1.1]"
           />
-          {/* Subtle translucent dark wash that keeps the background image 100% visible while making text pop */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-900/70 to-slate-900/40" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/40" />
+          {/* Translucent dark gradient wash ensuring text is 100% legible while photo is clearly visible */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 to-slate-900/60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/40" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             
             {/* Left Headline & CTAs */}
