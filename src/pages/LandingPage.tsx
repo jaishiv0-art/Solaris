@@ -43,7 +43,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-50 selection:bg-amber-100 selection:text-amber-900">
-      
+
       {/* Hero Section - Isolated dark canvas with vivid background & crisp high-contrast text */}
       <section className="relative isolate pt-12 pb-20 lg:pt-20 lg:pb-28 overflow-hidden bg-slate-950 text-white">
         {/* Cinematic Solar & Urban Landscape Background Image */}
@@ -64,7 +64,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-            
+
             {/* Left Headline & CTAs */}
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
@@ -221,13 +221,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       {/* "How It Works" Section: 3 Visual Feature Cards */}
       <section className="py-20 bg-white border-y border-slate-200/80 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
             <span className="text-xs font-bold uppercase tracking-wider text-amber-600 bg-amber-50 px-3 py-1 rounded-full border border-amber-200/60">
               Three Simple Steps
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-              How GeoCanopy Works
+              How Solaris Works
             </h2>
             <p className="text-sm text-slate-600">
               Transforming satellite imagery into actionable solar architecture and urban greenery intelligence.
@@ -235,7 +235,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            
+
             {/* Step 1: Draw Area */}
             <div className="p-8 rounded-3xl bg-slate-50 border border-slate-200/80 shadow-soft hover:shadow-float transition-all group flex flex-col justify-between">
               <div className="space-y-4">
