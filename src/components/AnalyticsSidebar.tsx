@@ -64,11 +64,16 @@ export const AnalyticsSidebar: React.FC<AnalyticsSidebarProps> = ({
   const pmSuryaGharGrant = calculatePMSuryaGharSubsidy(calculation.systemCapacityKWp);
   const netEstimatedCost = Math.max(0, estimatedGrossCost - pmSuryaGharGrant);
 
-  // Real bill savings calculation based on user's actual bill
+  // Real bill savings calculation based on user's actual bill & net-metering
   const monthlySolarUnits = Math.round(calculation.annualSolarGenerationKWh / 12);
   const monthlySolarSavings = Math.round(monthlySolarUnits * unitTariffINR);
   const finalMonthlySavings = Math.min(monthlyBillINR, monthlySolarSavings);
-  const annualSavingsFromBill = finalMonthlySavings * 12;
+  
+  // For commercial / large scale systems (>10 kWp), savings reflect full net-metering solar generation value
+  const isCommercialScale = calculation.systemCapacityKWp > 10;
+  const annualSavingsFromBill = isCommercialScale
+    ? calculation.estimatedAnnualSavings
+    : finalMonthlySavings * 12;
 
   const paybackYears = annualSavingsFromBill > 0
     ? (netEstimatedCost / annualSavingsFromBill).toFixed(1)

@@ -1,6 +1,6 @@
 /**
  * ============================================================================
- * SOLARIS / GEOCANOPY - CENTRAL CONFIGURATION FILE
+ * SOLVANTA / GEOCANOPY - CENTRAL CONFIGURATION FILE
  * ============================================================================
  * 
  * Edit this file to customize text, branding, contact info, images, default 
@@ -16,8 +16,8 @@ export const siteConfig = {
   // 1. BRANDING & IDENTITY
   // --------------------------------------------------------------------------
   branding: {
-    name: 'SOLARIS',
-    nameHighlightedPart: 'O', // The letter highlighted in amber: S[O]LARIS
+    name: 'SOLVANTA',
+    nameHighlightedPart: 'O', // The letter highlighted in amber: S[O]LVANTA
     subtitle: 'GeoCanopy',
     tagline: 'Connecting Rural & Urban',
     subTagline: 'Precision Satellite Rooftop Solar & Urban Greenery Estimator',

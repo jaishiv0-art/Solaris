@@ -54,7 +54,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               const target = e.currentTarget;
               target.src = siteConfig.media.logo;
             }}
-            alt="Solaris Rooftop Solar Landscape"
+            alt="Solvanta Rooftop Solar Landscape"
             className="w-full h-full object-cover object-center opacity-95 filter brightness-105 contrast-[1.05]"
           />
           {/* Lighter translucent gradient wash letting the background image shine through vividly */}
@@ -252,7 +252,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               Three Simple Steps
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-              How Solaris Works </h2>
+              How Solvanta Works </h2>
             <p className="text-sm text-slate-600">
               Transforming satellite imagery into actionable solar architecture and urban greenery intelligence.
             </p>

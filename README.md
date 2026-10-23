@@ -1,4 +1,4 @@
-# ☀️ SOLARIS — Connecting Rural & Urban
+# ☀️ SOLVANTA — Connecting Rural & Urban
 > **Autonomous Satellite Rooftop Solar & Urban Greenery Feasibility Engine**  
 > *Inspired by Google Project Sunroof & PM Surya Ghar: Muft Bijli Yojana*
 
@@ -29,7 +29,7 @@
 
 ## 🌟 Overview
 
-**Solaris** (GeoCanopy) is a high-precision, open clean-energy intelligence application designed to bridge rural and urban property owners with rooftop solar energy and urban tree canopy analytics.
+**Solvanta** (GeoCanopy) is a high-precision, open clean-energy intelligence application designed to bridge rural and urban property owners with rooftop solar energy and urban tree canopy analytics.
 
 Using satellite GIS mapping (Google Hybrid & OpenStreetMap), users can:
 - Draw precise perimeter polygons on their real rooftops.
@@ -147,7 +147,7 @@ To make changes easy and avoid digging through complex React code, all common va
 Open `src/config/siteConfig.ts` and edit:
 ```typescript
 branding: {
-  name: 'SOLARIS',
+  name: 'SOLVANTA',
   subtitle: 'GeoCanopy',
   tagline: 'Connecting Rural & Urban',
   description: 'Your custom description...',
@@ -255,7 +255,7 @@ The optimized bundle will be generated in the `dist/` directory.
 
 ## 🚀 Deploying to Vercel (Git Push)
 
-Solaris is connected to Vercel with automatic continuous integration. Whenever you push to the `main` branch, Vercel rebuilds and deploys the website automatically.
+Solvanta is connected to Vercel with automatic continuous integration. Whenever you push to the `main` branch, Vercel rebuilds and deploys the website automatically.
 
 ### Deploying Your Updates:
 ```bash

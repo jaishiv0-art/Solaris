@@ -18,7 +18,7 @@ export const Footer: React.FC = () => {
               />
               <div>
                 <span className="text-xl font-black tracking-wider text-white font-mono">
-                  S<span className="text-amber-400">O</span>LARIS
+                  S<span className="text-amber-400">O</span>LVANTA
                 </span>
                 <p className="text-[10px] text-amber-400 font-semibold tracking-wide">
                   — {siteConfig.branding.tagline} —

@@ -43,7 +43,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div>
             <div className="flex items-center gap-1.5">
               <span className="text-xl font-black tracking-wider text-slate-900 group-hover:text-amber-600 transition-colors font-mono">
-                S<span className="text-amber-500">O</span>LARIS
+                S<span className="text-amber-500">O</span>LVANTA
               </span>
               <span className="text-[10px] font-semibold uppercase tracking-wider bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded-full">
                 {siteConfig.branding.subtitle}
