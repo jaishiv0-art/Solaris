@@ -230,8 +230,8 @@ To use your own Supabase project:
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/jaishiv0-art/Solaris.git
-cd Solaris
+git clone https://github.com/jaishiv0-art/Solvanta.git
+cd Solvanta
 ```
 
 ### 2. Install dependencies
@@ -299,7 +299,7 @@ Within 1–2 minutes, your live site at [https://solaris-omega-rosy.vercel.app/]
 - **Email**: [jaishivtiwari@gmail.com](mailto:jaishivtiwari@gmail.com)
 - **Phone**: +91 98765 43210
 - **GitHub**: [@jaishiv0-art](https://github.com/jaishiv0-art)
-- **Repository**: [https://github.com/jaishiv0-art/Solaris](https://github.com/jaishiv0-art/Solaris)
+- **Repository**: [https://github.com/jaishiv0-art/Solvanta](https://github.com/jaishiv0-art/Solvanta)
 - **Live URL**: [https://solaris-omega-rosy.vercel.app](https://solaris-omega-rosy.vercel.app)
 
 ---

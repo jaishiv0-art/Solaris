@@ -51,7 +51,7 @@ export const siteConfig = {
     email: 'jaishivtiwari@gmail.com',
     phone: '+91 98765 43210',
     location: 'New Delhi / Remote, Global',
-    github: 'https://github.com/jaishiv0-art/Solaris',
+    github: 'https://github.com/jaishiv0-art/Solvanta',
     liveUrl: 'https://solaris-omega-rosy.vercel.app',
   },
 
